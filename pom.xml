@@ -65,8 +65,6 @@
 
     <build>
 
-        <finalName>thundr-contrib-ci</finalName>
-
         <resources>
             <resource>
                 <!-- Filter the application.property-->
