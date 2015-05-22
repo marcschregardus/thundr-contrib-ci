@@ -1,0 +1,30 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>CI (Codeship) Deployment Details</title>
+
+</head>
+<body>
+
+<h1>CI (Codeship) Deployment Details</h1>
+
+<p>
+<ul>
+    <li><strong>Build Number:</strong> {{buildNumber}}</li>
+    <li><strong>Build Url:</strong> <a href="{{buildUrl}}" target="_blank">{{buildUrl}}</a></li>
+    <li><strong>Branch:</strong> {{branch}}</li>
+    <li><strong>Commit Id:</strong> {{commitId}}</li>
+    <li><strong>Committer Name:</strong> {{committerName}}</li>
+    <li><strong>Committer Email:</strong> <a href="mailto:{{committerEmail}}">{{committerEmail}}</a></li>
+    <li><strong>Committer Username:</strong> {{committerUsername}}</li>
+    <li><strong>Message:</strong> {{message}}</li>
+</ul>
+</p>
+
+</body>
+</html>
