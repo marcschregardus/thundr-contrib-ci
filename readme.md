@@ -44,7 +44,17 @@ The resources for the project need to be filtered, so that the values to display
     
 ### Thundr (your project)
 
-The follow properties need to be added to your `application.properties` file. These properties are replaced with the values from the provided by codeship, and 
+Include the `CIModule` in your own module as a dependency. I.e.
+
+    @Override
+    public void requires(DependencyRegistry dependencyRegistry) {
+        super.requires(dependencyRegistry);
+        
+        // ...other dependencies
+        dependencyRegistry.addDependency(CIModule.class);
+    }
+
+The following properties need to be added to your `application.properties` file. These properties are replaced with the values from the provided by codeship, and 
 injected into the `CIController` that is used to display this information to the user.
 
     # CI (Codeship) environment variables - replaced by build server
@@ -88,15 +98,19 @@ each of these variables. Therefore, if deploying to the dev enviroment (say), th
 ### Deployment
 
 At the moment, the `development` branch for any project should be set up to deploy to the `dev` environment, and the `master` to deploy to the `uat` environment. When you are
-ready to deploy to production, copy the above script and point at the live server - and click on the `Restart Build`. In this way, you can guarantee that exactly the same code 
-that was tested on `uat` will be in the production environment, and the CI information will also be available. I.e.
+ready to deploy to production, alter the `master` -> `uat` script and point at the live server, and change the GAE server location. Then click on the `Restart Build` to trigger a 
+production deploy. In this way, you can guarantee that exactly the same code that was tested on `uat` will be in the production environment, and the CI information will also be available. I.e.
 
     mvn package -P prod-live -DskipTests ...etc
+    
+    http://my-project-prod.appspot.com
+
+**Note: once you have deployed, make sure to return the variable to the UAT environment, so you don't accidently deploy to production the next time code is committed to the master branch**
 
 ## Notes
 
 This is currently residing in my repo to see if it works for 3wks - and is also hosted using Bintray.
 
-https://bintray.com/marcschregardus/3wks/thundr-contrib-ci/1.0/view
+[https://bintray.com/marcschregardus/3wks/thundr-contrib-ci/1.0/view](https://bintray.com/marcschregardus/3wks/thundr-contrib-ci/1.0/view)
 
 If it works out, we'll consider moving into the main Thundr space.
