@@ -85,6 +85,14 @@ each of these variables. Therefore, if deploying to the dev enviroment (say), th
      -Dci.committer.username="$CI_COMMITTER_USERNAME" \
      -Dci.message="$CI_MESSAGE"
 
+### Deployment
+
+At the moment, the `development` branch for any project should be set up to deploy to the `dev` environment, and the `master` to deploy to the `uat` environment. When you are
+ready to deploy to production, copy the above script and point at the live server - and click on the `Restart Build`. In this way, you can guarantee that exactly the same code 
+that was tested on `uat` will be in the production environment, and the CI information will also be available. I.e.
+
+    mvn package -P prod-live -DskipTests ...etc
+
 ## Notes
 
 This is currently residing in my repo to see if it works for 3wks - and is also hosted using Bintray.
